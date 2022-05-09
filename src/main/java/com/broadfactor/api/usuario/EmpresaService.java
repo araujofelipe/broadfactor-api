@@ -2,6 +2,8 @@ package com.broadfactor.api.usuario;
 
 import static com.broadfactor.api.common.Singletons.restTemplate;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +21,19 @@ public class EmpresaService {
 	
 	public Empresa salvar(String cnpj) {
 		Empresa empresa = consultarEmpresa(cnpj);
-		return repository.save(empresa);
+		return repository.saveAndFlush(empresa);
 	}
 
 	public Empresa consultarEmpresa(String cnpj) {
 		return restTemplate().getForObject(String.format(receitaWSURI, cnpj), Empresa.class);
+	}
+
+	public Empresa detalhar(Long id) {
+		Optional<Empresa> optional = repository.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
 	}
 
 }

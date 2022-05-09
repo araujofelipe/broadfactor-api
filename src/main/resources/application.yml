@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect        
+  datasource:
+    url: "jdbc:postgresql://ec2-3-225-213-67.compute-1.amazonaws.com:5432/dehvkvegbfkd25?currentSchema=broadfactor"
+    username: ikfpailfxedjql
+    password: f7a4e838e7729dfa5e3c517c9e3e264e5906cbc6b21eaedb8cdf0a9a9c50113c
+    
+application:
+  receitaws:
+    uri: https://receitaws.com.br/v1/cnpj/%s
