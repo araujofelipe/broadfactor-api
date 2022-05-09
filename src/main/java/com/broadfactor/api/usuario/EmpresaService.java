@@ -7,17 +7,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EmpresaService {
 	
 	@Value("${application.receitaws.uri}")
 	public String receitaWSURI;
 	
 	private final EmpresaRepository repository;
-	
-	public EmpresaService(EmpresaRepository repository) {
-		this.repository = repository;
-	}
+	private final UsuarioRepository usuarioRepository;
 	
 	public Empresa salvar(String cnpj) {
 		Empresa empresa = consultarEmpresa(cnpj);

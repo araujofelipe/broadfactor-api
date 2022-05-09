@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
@@ -51,7 +51,7 @@ public class Empresa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "EMPRESA_ID")
 	Long id;
 	
@@ -110,8 +110,8 @@ public class Empresa implements Serializable {
 	@JoinTable(name="EMPRESA_ATIVIDADE_PRINCIPAL")
 	List<Atividade> atividadePrincipal;
 	
-	@OneToMany
-	Set<Usuario> usuario;
+	@OneToOne
+	Usuario usuario;
 	
 	@PrePersist
 	private void setSocios() {

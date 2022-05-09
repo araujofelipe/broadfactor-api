@@ -27,7 +27,7 @@ public class Atividade {
 	
 	@Id
 	@Column(name = "ATIVIDADE_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	String text;
 	String code;

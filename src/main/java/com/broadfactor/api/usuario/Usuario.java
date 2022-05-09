@@ -1,14 +1,18 @@
 package com.broadfactor.api.usuario;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,7 +34,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USUARIO_ID")
 	Long id;
 	
@@ -41,9 +45,14 @@ public class Usuario implements Serializable {
 	
 	String senha;
 	
-	@ManyToOne
+	@OneToOne
     @JoinColumn(name="EMPRESA_ID", nullable=false)
 	Empresa empresa;
+	
+	
+	@ElementCollection
+	public Set<String> roles = new HashSet<>();
+	
 	
 	public UsuarioDTO toDTO() {
 		Empresa empresa_  = new Empresa();
@@ -55,4 +64,10 @@ public class Usuario implements Serializable {
 		.empresa(empresa_)
 		.build();
 	}
+	
+	@PrePersist
+	private void prePersist() {
+		this.roles.add("ROLE_USER");
+	}
+	
 }

@@ -1,6 +1,8 @@
 spring:
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect        
+    database-platform: org.hibernate.dialect.PostgreSQLDialect   
+    hibernate:
+      ddl-auto: create
   datasource:
     url: "jdbc:postgresql://ec2-3-225-213-67.compute-1.amazonaws.com:5432/dehvkvegbfkd25?currentSchema=broadfactor"
     username: ikfpailfxedjql
