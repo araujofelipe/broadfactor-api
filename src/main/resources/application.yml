@@ -1,13 +1,15 @@
 spring:
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect   
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: create
   datasource:
-    url: "jdbc:postgresql://ec2-3-225-213-67.compute-1.amazonaws.com:5432/dehvkvegbfkd25?currentSchema=broadfactor"
-    username: ikfpailfxedjql
-    password: f7a4e838e7729dfa5e3c517c9e3e264e5906cbc6b21eaedb8cdf0a9a9c50113c
-    
+    url: "jdbc:mysql://b159e03a0ce500:45f95f0f@us-cdbr-east-05.cleardb.net/heroku_b2879a69c8fab34?reconnect=true"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+        
 application:
   receitaws:
     uri: https://receitaws.com.br/v1/cnpj/%s
+    
+    #spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+ #spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
